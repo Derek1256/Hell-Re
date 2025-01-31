@@ -26,15 +26,15 @@ public class CustomPortalBlock extends NetherPortalBlock {
 
                 if (targetPos != null && targetDimension != null) {
                     if (entity instanceof PlayerEntity) {
-
-                        if (entity.getPortalCooldown() > 3) {
+                        // Players must wait before teleporting
+                        if (entity.getPortalCooldown() > 0) {
                             entity.resetPortalCooldown();
                         } else {
                             entity.setPortalCooldown();
                             teleportEntity(entity, targetPos, targetDimension);
                         }
                     } else {
-
+                        // Other entities teleport instantly
                         teleportEntity(entity, targetPos, targetDimension);
                     }
                 }
@@ -44,7 +44,7 @@ public class CustomPortalBlock extends NetherPortalBlock {
 
     private void teleportEntity(Entity entity, BlockPos targetPos, String targetDimension) {
         if (entity.world instanceof ServerWorld) {
-            ServerWorld targetWorld = ((ServerWorld) entity.world).getServer().getWorld(World.OVERWORLD);
+            ServerWorld targetWorld = ((ServerWorld) entity.world).getServer().getWorld(World.OVERWORLD); // Replace with target dimension
             if (targetWorld != null) {
                 entity.teleport(targetWorld, targetPos.getX(), targetPos.getY(), targetPos.getZ(), entity.getYaw(), entity.getPitch());
             }

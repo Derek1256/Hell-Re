@@ -1,7 +1,10 @@
-package org.derek1256.customportals.block.entity;
+package org.derek1256.hell.block.entity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.component.ComponentMap;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -11,7 +14,7 @@ public class PortalControllerBlockEntity extends BlockEntity {
     private String targetDimension;
 
     public PortalControllerBlockEntity(BlockPos pos, BlockState state) {
-        super(CustomPortals.PORTAL_CONTROLLER_BLOCK_ENTITY, pos, state);
+        super(Hell.PORTAL_CONTROLLER_BLOCK_ENTITY, pos, state);
     }
 
     public void setTargetPos(BlockPos targetPos) {
@@ -33,25 +36,24 @@ public class PortalControllerBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-        if (nbt.contains("TargetPos")) {
+    public void readComponents(ComponentMap components) {
+        super.readComponents(components);
+        NbtComponent nbt = components.get(DataComponentTypes.CUSTOM_DATA);
+        if (nbt != null) {
             int[] pos = nbt.getIntArray("TargetPos");
             targetPos = new BlockPos(pos[0], pos[1], pos[2]);
-        }
-        if (nbt.contains("TargetDimension")) {
             targetDimension = nbt.getString("TargetDimension");
         }
     }
 
     @Override
-    public void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        if (targetPos != null) {
+    public void writeComponents(ComponentMap.Builder builder) {
+        super.writeComponents(builder);
+        if (targetPos != null && targetDimension != null) {
+            NbtComponent nbt = new NbtComponent();
             nbt.putIntArray("TargetPos", new int[]{targetPos.getX(), targetPos.getY(), targetPos.getZ()});
-        }
-        if (targetDimension != null) {
             nbt.putString("TargetDimension", targetDimension);
+            builder.add(DataComponentTypes.CUSTOM_DATA, nbt);
         }
     }
 }

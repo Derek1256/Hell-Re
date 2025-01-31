@@ -1,8 +1,9 @@
-package org.derek1256.customportals.item;
+package org.derek1256.hell.item;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -20,10 +21,10 @@ public class TargetSetItem extends Item {
             BlockPos pos = user.getBlockPos();
             ServerWorld serverWorld = (ServerWorld) world;
 
-            // Save the location to the item's NBT
             ItemStack stack = user.getStackInHand(hand);
-            stack.getOrCreateNbt().putIntArray("TargetPos", new int[]{pos.getX(), pos.getY(), pos.getZ()});
-            stack.getOrCreateNbt().putString("TargetDimension", serverWorld.getRegistryKey().getValue().toString());
+            CompoundTag tag = stack.getOrCreateTag();
+            tag.putIntArray("TargetPos", new int[]{pos.getX(), pos.getY(), pos.getZ()});
+            tag.putString("TargetDimension", serverWorld.getRegistryKey().getValue().toString());
 
             user.sendMessage(net.minecraft.text.Text.of("Location saved!"), true);
         }
