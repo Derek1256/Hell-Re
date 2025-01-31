@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "hell",
+  "version": "0.5",
+  "name": "Hell-Revamped",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/hell/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "org.derek1256.hell.client.HellClient"
+    ],
+    "main": [
+      "org.derek1256.hell.Hell"
+    ]
+  },
+  "mixins": [
+    "hell.mixins.json",
+    "NetherPortalBlockMixin",
+    {
+      "config": "hell.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric": "*",
+    "minecraft": "1.21.4"
+  }
+}

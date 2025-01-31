@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "org.derek1256.hell.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "NetherPortalBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
