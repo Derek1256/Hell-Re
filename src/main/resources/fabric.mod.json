@@ -1,32 +1,26 @@
 {
   "schemaVersion": 1,
   "id": "hell",
-  "version": "${version}",
-  "name": "Hell-Revamped",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "version": "1.0.0",
+  "name": "Hell",
+  "description": "Simple mod for set portals",
+  "authors": [
+    "Derek1256"
+  ],
+  "contact": {
+    "homepage": "https://example.com",
+    "sources": "https://github.com/Derek1256/Hell-Re"
+  },
   "license": "MIT",
-  "icon": "assets/hell/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "org.derek1256.hell.client.HellClient"
-    ],
     "main": [
       "org.derek1256.hell.Hell"
     ]
   },
-  "mixins": [
-    "hell.mixins.json",
-    {
-      "config": "hell.client.mixins.json",
-      "environment": "client"
-    }
-  ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "fabricloader": ">=0.15.0",
+    "fabric-api": "*",
+    "minecraft": "1.21.4"
   }
 }

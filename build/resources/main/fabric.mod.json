@@ -1,33 +1,29 @@
 {
   "schemaVersion": 1,
   "id": "hell",
-  "version": "0.5",
-  "name": "Hell-Revamped",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "version": "1.0.0",
+  "name": "Hell",
+  "description": "Simple mod that allows changing Nether Portal Size",
+  "authors": [
+    "Derek1256"
+  ],
+  "contact": {
+    "homepage": "https://astrolyst.com",
+    "sources": "https://github.com/Derek1256/Hell-Re"
+  },
   "license": "MIT",
-  "icon": "assets/hell/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "org.derek1256.hell.client.HellClient"
-    ],
     "main": [
       "org.derek1256.hell.Hell"
     ]
   },
   "mixins": [
-    "hell.mixins.json",
-    "NetherPortalBlockMixin",
-    {
-      "config": "hell.client.mixins.json",
-      "environment": "client"
-    }
+    "hell.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.15.0",
-    "fabric": "*",
+    "fabric-api": "*",
     "minecraft": "1.21.4"
   }
 }
